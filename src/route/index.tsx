@@ -3,6 +3,7 @@ import { Container } from "@/presentation/container";
 import { Home } from "@/presentation/page/home";
 import Notfound from "@/presentation/page/notfound";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { Parameter } from "@/presentation/page/parameter";
 
 export default () => {
   return (
@@ -11,6 +12,11 @@ export default () => {
         <Route exact path="/">
           <Container>
             <Home />
+          </Container>
+        </Route>
+        <Route exact path="/parameter">
+          <Container>
+            <Parameter />
           </Container>
         </Route>
         <Route path="*">
