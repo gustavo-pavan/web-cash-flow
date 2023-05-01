@@ -79,10 +79,11 @@ export const AppBar: React.FC<Props> = ({ handleDrawerOpen, open }) => {
       position="fixed"
       open={open}
       sx={{
-        backgroundColor: theme.palette.primary.dark,
+        backgroundColor: theme.palette.background.default,
         height: 84,
         backgroundImage: "none",
         border: "none",
+        boxShadow: "none",
         zIndex: (theme) => theme.zIndex.drawer + 1,
       }}
     >

@@ -1,5 +1,10 @@
 import React from "react";
+import { Container } from "../container";
 
 export const Home: React.FC = () => {
-    return <div>Home</div>
-}
+  return (
+    <Container>
+      <div>Gustavo</div>
+    </Container>
+  );
+};

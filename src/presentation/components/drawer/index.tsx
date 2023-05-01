@@ -30,7 +30,7 @@ export const Drawer: React.FC<Props> = ({ open }) => {
           width: drawerWidth,
           boxSizing: "border-box",
           border: "none",
-          background: theme.palette.primary.dark,
+          background: theme.palette.background.default,
         },
       }}
       anchor="left"

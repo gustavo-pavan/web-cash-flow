@@ -1,25 +1,26 @@
-import { Box } from "@mui/system";
 import React from "react";
 import { ThemeContext } from "../components/theme";
-import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
 import { AppBar } from "../components/app-bar";
-import { useTheme } from "@mui/material/styles";
 import { Drawer } from "../components/drawer";
+import { Main } from "../components/main";
 
-export const Container: React.FC = () => {
-    const [open, setOpen] = React.useState(false);
+interface Props {
+  children: React.ReactNode;
+}
 
-    const handleDrawerOpen = () => {
-      setOpen(!open);
-    };
+export const Container: React.FC<Props> = ({ children }) => {
+  const [open, setOpen] = React.useState(false);
+
+  const handleDrawerOpen = () => {
+    setOpen(!open);
+  };
 
   return (
     <ThemeContext>
-       <AppBar handleDrawerOpen={handleDrawerOpen} open={open} />
-       <Drawer open={open} />
+      <AppBar handleDrawerOpen={handleDrawerOpen} open={open} />
+      <Drawer open={open} />
 
-      <Box></Box>
+      <Main open={open}>{children}</Main>
     </ThemeContext>
   );
 };

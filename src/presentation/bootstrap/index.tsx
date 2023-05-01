@@ -1,10 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { Container } from "../container";
+import { Home } from "../home";
 
 const mount = (el) => {
 
-    ReactDOM.render(<Container />, el);
+    ReactDOM.render(<Home />, el);
   };
 
   
