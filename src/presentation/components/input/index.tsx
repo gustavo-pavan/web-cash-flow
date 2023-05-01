@@ -10,7 +10,10 @@ const InputCustom = styled(TextField)(({ theme }) => ({
   "& .MuiInputBase-input": {
     borderRadius: 4,
     position: "relative",
-    backgroundColor: alpha(theme.palette.background.default, 0.67),
+    backgroundColor:
+    theme.palette.mode == "dark"
+      ? alpha(theme.palette.background.default, 0.67)
+      : alpha(theme.palette.background.paper, 0.67),
     border: `1px solid ${alpha(theme.palette.text.secondary, 0.05)}`,
     fontSize: 15,
     width: "100%",

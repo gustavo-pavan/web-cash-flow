@@ -66,6 +66,10 @@ export const Home: React.FC = () => {
         elevation={1}
         sx={{
           paddingBottom: 2,
+          background:
+            theme.palette.mode == "dark"
+              ? theme.palette.background.paper
+              : theme.palette.background.default,
         }}
       >
         <Box
@@ -121,20 +125,35 @@ export const Home: React.FC = () => {
           </Box>
         </Box>
 
-      <Box sx={{
-        width: "100%", display: "flex", justifyContent: "end"
-      }}>
-      <Button size="small" color="secondary" variant="outlined" startIcon={<Add />}  sx={{
-          margin: 2
-        }}>
-          Add Flow
-        </Button>
-      </Box>
-        
+        <Box
+          sx={{
+            width: "100%",
+            display: "flex",
+            justifyContent: "end",
+          }}
+        >
+          <Button
+            size="small"
+            color="secondary"
+            variant="outlined"
+            startIcon={<Add />}
+            sx={{
+              margin: 2,
+            }}
+          >
+            Add Flow
+          </Button>
+        </Box>
+
         <Divider />
 
         <Box p={2}>
-          <TableContainer component={Paper}>
+          <TableContainer component={Paper} sx={{
+             background:
+             theme.palette.mode == "dark"
+               ? theme.palette.background.paper
+               : theme.palette.background.default,
+          }}>
             <Table sx={{ minWidth: 650 }} aria-label="simple table">
               <TableHead>
                 <TableRow>
@@ -169,6 +188,10 @@ export const Home: React.FC = () => {
         <Paper
           sx={{
             padding: 2,
+            background:
+            theme.palette.mode == "dark"
+              ? theme.palette.background.paper
+              : theme.palette.background.default,
           }}
         >
           <Box

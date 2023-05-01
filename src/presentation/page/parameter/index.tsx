@@ -84,7 +84,9 @@ export const Parameter: React.FC = () => {
       <Paper
         sx={{
           height: 70,
-          background: theme.palette.background.default,
+          background: theme.palette.mode == "dark"
+          ? theme.palette.background.paper
+          : theme.palette.background.default,
           padding: 2,
           paddingLeft: 4,
           borderRadius: 2,
@@ -106,6 +108,9 @@ export const Parameter: React.FC = () => {
         <Paper
           sx={{
             borderRadius: 2,
+            background: theme.palette.mode == "dark"
+            ? theme.palette.background.paper
+            : theme.palette.background.default,
           }}
         >
           <Box sx={{ padding: 2 }}>
@@ -155,6 +160,9 @@ export const Parameter: React.FC = () => {
                 <Grid item xs={6}>
                   <Paper
                     sx={{
+                      background: theme.palette.mode == "dark"
+                      ? theme.palette.background.paper
+                      : theme.palette.background.default,
                       padding: 2,
                       borderRadius: 2,
                       border: `1px solid ${alpha(
@@ -229,6 +237,9 @@ export const Parameter: React.FC = () => {
                 <Grid item xs={6}>
                   <Paper
                     sx={{
+                      background: theme.palette.mode == "dark"
+                      ? theme.palette.background.paper
+                      : theme.palette.background.default,
                       padding: 2,
                       borderRadius: 2,
                       border: `1px solid ${alpha(
@@ -246,12 +257,15 @@ export const Parameter: React.FC = () => {
                     <Box>
                       <Paper sx={{
                         boxShadow: "none",
-                        background: alpha(theme.palette.background.default, 0.4),
+                        background: theme.palette.mode == "dark"
+                        ? alpha(theme.palette.background.default, 0.4)
+                        : alpha(theme.palette.background.paper, 0.4),
                         padding: 2,
                         border: `1px solid ${alpha(theme.palette.text.secondary, 0.1)}`,
-                        borderRadius: 2
+                        borderRadius: 2,
+                        marginBottom: 2
                       }}>
-                        <Typography variant="caption" component="span">Bank Account</Typography>
+                        <Typography variant="caption" component="span">Registers</Typography>
                       </Paper>
                       <List>
                         <ListItem

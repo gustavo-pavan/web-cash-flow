@@ -44,7 +44,7 @@ export const ThemeContext: React.FC<Props> = ({ children }) => {
               main: "#1e88e5",
             },
             background: {
-              paper: "#ededed",
+              paper: "#eef2f6",
               default: "#ffffff",
             },
           }),
