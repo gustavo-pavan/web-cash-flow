@@ -12,14 +12,14 @@ module.exports = {
     transform: {
       ".+\\.(ts|tsx)$": "ts-jest",
     },
-    setupFilesAfterEnv: ["<rootDir>/src/main/modules/jest-setup.ts"],
+    setupFilesAfterEnv: ["<rootDir>/src/main/module/jest-setup.ts"],
     moduleDirectories: ["node_modules"],
     moduleNameMapper: {
       "@/(.*)": "<rootDir>/src/$1",
       "@/tests/(.*)": "<rootDir>/tests/$1",
-      "\\.(jpg|jpeg|png)$": "<rootDir>/src/main/modules/jest-config-img.ts",
+      "\\.(jpg|jpeg|png)$": "<rootDir>/src/main/module/jest-config-img.ts",
       "@/assets\\.(jpg|jpeg|png)$":
-        "<rootDir>/src/main/modules/jest-config-img.ts",
+        "<rootDir>/src/main/module/jest-config-img.ts",
     },
   };
   
