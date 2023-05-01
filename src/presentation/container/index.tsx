@@ -19,7 +19,6 @@ export const Container: React.FC<Props> = ({ children }) => {
     <ThemeContext>
       <AppBar handleDrawerOpen={handleDrawerOpen} open={open} />
       <Drawer open={open} />
-
       <Main open={open}>{children}</Main>
     </ThemeContext>
   );
