@@ -16,15 +16,15 @@ export const ThemeContext: React.FC<Props> = ({ children }) => {
             primary: {
               main: "#7c4dff",
               light: "#212946",
-              dark: "#6f3bff",
+              dark: "#111936",
               medium: "rgb(189, 200, 240)",
             },
             secondary: {
               main: "#1e88e5",
             },
             background: {
-              paper: "#1a223f",
-              default: "#111936",
+              paper: "#212946",
+              default: "#212946",
             },
             success: {
               main: "#03DAC5",
@@ -48,6 +48,9 @@ export const ThemeContext: React.FC<Props> = ({ children }) => {
     components: {
       MuiCssBaseline: {
         styleOverrides: {
+          "body":{
+            backgroundColor: ""
+          },
           "::-webkit-scrollbar": {
             width: "0.2em",
           },
