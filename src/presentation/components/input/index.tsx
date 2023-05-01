@@ -4,11 +4,14 @@ import InputLabel from "@mui/material/InputLabel";
 import { TextField, TextFieldProps } from "@mui/material";
 
 const InputCustom = styled(TextField)(({ theme }) => ({
+  "& + fieldset":{
+    border: "none"
+  },
   "& .MuiInputBase-input": {
     borderRadius: 4,
     position: "relative",
-    backgroundColor: theme.palette.background.default,
-    border: `1px solid ${alpha(theme.palette.text.primary, 0.2)}`,
+    backgroundColor: alpha(theme.palette.background.default, 0.67),
+    border: `1px solid ${alpha(theme.palette.text.secondary, 0.05)}`,
     fontSize: 15,
     width: "100%",
     padding: "14px 16px",
@@ -17,6 +20,9 @@ const InputCustom = styled(TextField)(({ theme }) => ({
       "background-color",
       "box-shadow",
     ]),
+    "&:hover + fieldset": {
+      border: `1px solid ${alpha(theme.palette.primary.main, 0.7)}`,
+    },
     "&:focus": {
       boxShadow: `${alpha(theme.palette.primary.main, 0.25)} 0 0 0 0.2rem`,
       borderColor: theme.palette.primary.main,
