@@ -1,5 +1,5 @@
 import React from "react";
-import { Container } from "../container";
+import { Container } from "../../container";
 import {
   Box,
   Button,
@@ -17,7 +17,7 @@ import {
   alpha,
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
-import { Input } from "../components/input";
+import { Input } from "../../components/input";
 import { FileDownload, Add } from "@mui/icons-material";
 
 export const Home: React.FC = () => {

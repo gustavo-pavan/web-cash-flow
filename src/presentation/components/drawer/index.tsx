@@ -1,9 +1,19 @@
 import React from "react";
 import DrawerMui from "@mui/material/Drawer";
 import { styled } from "@mui/material/styles";
-import { List, ListItem, ListItemButton, ListItemIcon, ListItemText, useTheme } from "@mui/material";
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
+import {
+  Box,
+  Divider,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemIcon,
+  ListItemText,
+  Typography,
+  useTheme,
+} from "@mui/material";
+import { Settings, Home } from "@mui/icons-material";
+import { Link, useLocation } from "react-router-dom";
 
 const drawerWidth = 240;
 
@@ -19,6 +29,15 @@ interface Props {
 
 export const Drawer: React.FC<Props> = ({ open }) => {
   const theme = useTheme();
+  const location = useLocation();
+
+  let routes = new Array<string>();
+
+  for (let i = 0; i < menus.length; i++)
+    routes.push(...menus[i].links.map((x) => x.path));
+
+  const regex = /(\/[a-zA-z-_]+)|(\/)/g;
+  const route = regex.exec(location.pathname)[0];
 
   return (
     <DrawerMui
@@ -39,19 +58,88 @@ export const Drawer: React.FC<Props> = ({ open }) => {
     >
       <>
         <DrawerHeader />
-        <List>
-        {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
+        {menus.map((menu) => (
+          <React.Fragment key={menu.title}>
+            <Box
+              sx={{
+                pl: "17px",
+              }}
+            >
+              <Typography
+                variant="h6"
+                component="span"
+                sx={{
+                  fontSize: "1em",
+                }}
+              >
+                {menu.title}
+              </Typography>
+            </Box>
+            <List sx={{ pl: "20px" }}>
+              {menu.links.map((link, index) => (
+                <ListItem key={link.label} disablePadding>
+                  <ListItemButton
+                    sx={{
+                      borderRadius: "8px",
+                      color:
+                        route == link.path
+                          ? theme.palette.primary.main
+                          : theme.palette.text.primary,
+                      mb: "5px",
+                      "&:hover": {
+                        background: theme.palette.primary.light,
+                      },
+                    }}
+                    component={Link}
+                    to={link.path}
+                    selected={route === link?.path}
+                  >
+                    <ListItemIcon
+                      sx={{
+                        color:
+                          route == link.path
+                            ? theme.palette.primary.main
+                            : theme.palette.text.primary,
+                      }}
+                    >
+                      {link.icon}
+                    </ListItemIcon>
+                    <ListItemText primary={link.label} />
+                  </ListItemButton>
+                </ListItem>
+              ))}
+            </List>
+            <Divider
+              sx={{
+                mb: "12px",
+              }}
+            />
+          </React.Fragment>
         ))}
-      </List>
       </>
     </DrawerMui>
   );
 };
+
+const menus = [
+  {
+    title: "Home",
+    links: [
+      {
+        path: "/",
+        icon: <Home />,
+        label: "Home",
+      },
+    ],
+  },
+  {
+    title: "Parameter",
+    links: [
+      {
+        path: "/parameter",
+        icon: <Settings />,
+        label: "Paramater",
+      },
+    ],
+  },
+];
