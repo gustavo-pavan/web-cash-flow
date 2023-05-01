@@ -29,6 +29,10 @@ export const ThemeContext: React.FC<Props> = ({ children }) => {
           success: {
             main: "#03DAC5",
           },
+          text:{
+            primary: "rgb(215, 220, 236)",
+            secondary: "rgb(189, 200, 240)"
+          }
         }
         : {
             primary: {
