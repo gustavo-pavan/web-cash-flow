@@ -1,6 +1,5 @@
-export type BankAccount = {
+export type PaymentType = {
     id?: string
     name: string
     description: string
-    balance: number
 }

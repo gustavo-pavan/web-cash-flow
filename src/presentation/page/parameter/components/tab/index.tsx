@@ -8,6 +8,7 @@ import { useTheme } from "@mui/material";
 import Tabs from "@mui/material/Tabs";
 import {Tab as TabMui}  from "@mui/material";
 import { TabPanel } from "../tab-panel";
+import { PaymentType } from "../../payment-type";
   
   function a11yProps(index: number) {
     return {
@@ -95,10 +96,10 @@ export const Tab: React.FC = () => {
               <BankAccout />
             </TabPanel>
             <TabPanel value={value} index={1} dir={theme.direction}>
-              Item Two
+              Item Three
             </TabPanel>
             <TabPanel value={value} index={2} dir={theme.direction}>
-              Item Three
+              <PaymentType />
             </TabPanel>
           </SwipeableViews>
         </Paper>
