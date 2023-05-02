@@ -3,6 +3,7 @@ import { FlowParameter } from "@/domain/entity/flow-parameter";
 import { PaymentType } from "@/domain/entity/payment-type";
 import { makeGetFlowParameterFactory } from "@/main/factory/flow-parameter/get-flow-parameter.factory";
 import { makeCreateFlowFactory } from "@/main/factory/flow/create-flow.factory";
+import { makeGetFlowFactory } from "@/main/factory/flow/get-flow.factory";
 import { makeUpdateFlowFactory } from "@/main/factory/flow/update-flow.factory";
 import { makeGetPaymentTypeFactory } from "@/main/factory/payment-type/get-payment-type.factory";
 import { Input } from "@/presentation/components/input";
@@ -12,7 +13,8 @@ import { Box, Button, Divider, Grid, MenuItem } from "@mui/material";
 import moment from "moment";
 
 import React from "react";
-import { useSetRecoilState } from "recoil";
+import { useRecoilState, useSetRecoilState } from "recoil";
+import { flowStates } from "../atom/atom";
 
 export const Form: React.FC = () => {
   const getPaymentType = makeGetPaymentTypeFactory();
@@ -20,6 +22,10 @@ export const Form: React.FC = () => {
 
   const createFlow = makeCreateFlowFactory();
   const updateFlow = makeUpdateFlowFactory();
+
+  const getFlow = makeGetFlowFactory();
+
+  const [flows, setFlows] = useRecoilState(flowStates);
 
   const setSnackbarState = useSetRecoilState(snackbarState);
 
@@ -85,6 +91,12 @@ export const Form: React.FC = () => {
     );
   };
 
+  const onHandlerRefreshList = () => {
+    getFlow.request().then((data) => {
+      setFlows({ flowStates: data });
+    });
+  };
+
   const hasError: boolean = validError();
 
   const onHandlerCreate = (flow: Flow) => {
@@ -97,6 +109,8 @@ export const Form: React.FC = () => {
           type: "success",
         });
         onHandlerClean();
+
+        onHandlerRefreshList();
       })
       .catch((error) => {
         setSnackbarState({
@@ -116,7 +130,8 @@ export const Form: React.FC = () => {
           open: true,
           type: "success",
         });
-        onHandlerClean()
+        onHandlerClean();
+        onHandlerRefreshList();
       })
       .catch((error) => {
         setSnackbarState({

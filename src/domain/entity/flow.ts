@@ -1,4 +1,6 @@
 export type Flow = {
+    flowParameterName?: string
+    paymentTypeName?: string
     paymentTypeId: string
     flowParameterId: string
     postingDate: string
@@ -13,3 +15,4 @@ export enum Status{
     Open = 0,
     Closed = 1 
 }
+
