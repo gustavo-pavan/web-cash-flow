@@ -19,29 +19,11 @@ import {
 import { useTheme } from "@mui/material/styles";
 import { Input } from "../../components/input";
 import { FileDownload, Add } from "@mui/icons-material";
+import { Form } from "./components/form";
 
 export const Home: React.FC = () => {
   const theme = useTheme();
-  console.log(theme);
-  const currencies = [
-    {
-      value: "USD",
-      label: "$",
-    },
-    {
-      value: "EUR",
-      label: "€",
-    },
-    {
-      value: "BTC",
-      label: "฿",
-    },
-    {
-      value: "JPY",
-      label: "¥",
-    },
-  ];
-
+  
   function createData(
     name: string,
     calories: number,
@@ -89,61 +71,12 @@ export const Home: React.FC = () => {
         </Box>
         <Divider />
 
-        <Box padding={2}>
-          <Input name="Name *" placeholder="Name *" id="name" />
-        </Box>
+       
 
-        <Divider />
+    
+          <Form />
 
-        <Box padding={2}>
-          <Grid container spacing={2}>
-            <Grid item xs={4}>
-              <Input name="Name *" placeholder="Name *" id="name" />
-            </Grid>
-            <Grid item xs={4}>
-              <Input name="Name *" placeholder="Name *" id="name" />
-            </Grid>
-            <Grid item xs={4}>
-              <Input name="Name *" placeholder="Name *" id="name" />
-            </Grid>
-          </Grid>
-
-          <Box mt={2}>
-            <Input
-              select
-              name="Name *"
-              id="name"
-              type="password"
-              label="Select"
-            >
-              {currencies.map((option) => (
-                <MenuItem key={option.value} value={option.value}>
-                  {option.label}
-                </MenuItem>
-              ))}
-            </Input>
-          </Box>
-        </Box>
-
-        <Box
-          sx={{
-            width: "100%",
-            display: "flex",
-            justifyContent: "end",
-          }}
-        >
-          <Button
-            size="small"
-            color="secondary"
-            variant="outlined"
-            startIcon={<Add />}
-            sx={{
-              margin: 2,
-            }}
-          >
-            Add Flow
-          </Button>
-        </Box>
+       
 
         <Divider />
 
