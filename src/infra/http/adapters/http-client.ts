@@ -13,16 +13,8 @@ export type HttpMethod = "post" | "get" | "put" | "delete";
 
 export type HttpResponse<T = any> = {
   statusCode: HttpStatusCode;
-  body?: HttpDataResult<T>;
+  body?: T;
 };
-
-export type HttpDataResult<T = any> = {
-  payload?: T,
-  isSuccess?: boolean,
-  message?: Array<any>,
-  page?: number,
-  size?: number
-}
 
 export enum HttpStatusCode {
   ok = 200,
