@@ -3,7 +3,7 @@ import { makeHttpFactory } from "../http-client/http-client.factory";
 import { makeApiParameterUrlFactory } from "../api-url/url.factory";
 import { UpdateBankAccount } from "@/application/bank-account/update-bank-account.application";
 
-export const makeCreateBankAccountFactory = () : UpdateBankAccount => 
+export const makeUpdateBankAccountFactory = () : UpdateBankAccount => 
 new UpdateBankAccount(
     new HttpMiddlewareStatusCode(
       makeHttpFactory()

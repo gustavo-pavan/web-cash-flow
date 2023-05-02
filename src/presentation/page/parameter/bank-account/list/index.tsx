@@ -11,15 +11,25 @@ import {
 } from "@mui/material";
 import { alpha, Box } from "@mui/system";
 import React, { useEffect } from "react";
-import { bankAccountsStates } from "../../components/atom/atom";
-import { useRecoilState } from "recoil";
+import {
+  bankAccountState,
+  bankAccountsStates,
+} from "../../components/atom/atom";
+import { useRecoilState, useSetRecoilState } from "recoil";
 import { makeGetBankAccountFactory } from "@/main/factory/bank-account/get-bank-account.factory";
+import { BankAccount } from "@/domain/entity/bank-account";
 
 export const ListBankAccount: React.FC = () => {
   const theme = useTheme();
 
   const [bankAccountsState, setBankAccounts] =
     useRecoilState(bankAccountsStates);
+
+  const setBankAccount = useSetRecoilState(bankAccountState);
+
+  const handlerUpdate = (account: BankAccount) => {
+    setBankAccount({ bankAccount: account });
+  };
 
   return (
     <Paper
@@ -66,11 +76,12 @@ export const ListBankAccount: React.FC = () => {
                     <Box>
                       <IconButton
                         edge="end"
-                        aria-label="delete"
+                        aria-label="update"
                         sx={{
                           marginRight: 2,
                           color: theme.palette.text.secondary,
                         }}
+                        onClick={() => handlerUpdate(bankAccount)}
                       >
                         <Edit />
                       </IconButton>
@@ -80,14 +91,16 @@ export const ListBankAccount: React.FC = () => {
                     </Box>
                   }
                 >
-                  <ListItemText primary={bankAccount.name}  secondary={
-                    <Box>
-                        <Typography variant="caption" component="span" >
+                  <ListItemText
+                    primary={bankAccount.name}
+                    secondary={
+                      <Box>
+                        <Typography variant="caption" component="span">
                           R${bankAccount.balance.toFixed(2)}
                         </Typography>
                       </Box>
-
-                  }/>
+                    }
+                  />
                 </ListItem>
                 <Divider />
               </React.Fragment>
