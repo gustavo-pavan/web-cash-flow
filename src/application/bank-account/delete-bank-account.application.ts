@@ -9,9 +9,8 @@ export class DeleteBankAccount implements IDeleteBankAccount{
     
     async request(id: string): Promise<boolean> {
         var response = await this.http.request({
-            url: this.url,
+            url: `${this.url}/${id}`,
             method: "delete",
-            body: id
         });
 
         return response.body;

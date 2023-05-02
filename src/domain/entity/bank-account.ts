@@ -4,3 +4,7 @@ export type BankAccount = {
     description: string
     balance: number
 }
+
+export type BankAccountDelete = {
+    id: string
+}

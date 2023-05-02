@@ -8,6 +8,7 @@ import {
   ListItemText,
   Divider,
   useTheme,
+  Button,
 } from "@mui/material";
 import { alpha, Box } from "@mui/system";
 import React, { useEffect } from "react";
@@ -16,19 +17,59 @@ import {
   bankAccountsStates,
 } from "../../components/atom/atom";
 import { useRecoilState, useSetRecoilState } from "recoil";
-import { makeGetBankAccountFactory } from "@/main/factory/bank-account/get-bank-account.factory";
 import { BankAccount } from "@/domain/entity/bank-account";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogTitle from "@mui/material/DialogTitle";
+import { makeDeleteBankAccountFactory } from "@/main/factory/bank-account/delete-bank-account.factory";
+import { makeGetBankAccountFactory } from "@/main/factory/bank-account/get-bank-account.factory";
+import { snackbarState } from "@/presentation/components/snackbar/atom";
 
 export const ListBankAccount: React.FC = () => {
   const theme = useTheme();
 
+  const deleteBankAccount = makeDeleteBankAccountFactory();
+  const getAllBankAccount = makeGetBankAccountFactory();
+  const setSnackbarState = useSetRecoilState(snackbarState);
+  
   const [bankAccountsState, setBankAccounts] =
     useRecoilState(bankAccountsStates);
 
   const setBankAccount = useSetRecoilState(bankAccountState);
+  const [account, setAccount] = React.useState<BankAccount>();
 
   const handlerUpdate = (account: BankAccount) => {
     setBankAccount({ bankAccount: account });
+  };
+
+  const [open, setOpen] = React.useState(false);
+
+  const handleClickOpen = (account: BankAccount) => {
+    setAccount(account);
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const handleDelete = () => {
+    deleteBankAccount.request(account.id).then((data) => {
+      if (data) {
+        getAllBankAccount.request().then((accounts) => {
+          setBankAccounts({ bankAccounts: accounts });
+        });
+      }
+    });
+    setSnackbarState({
+      message: "Deleted with success!",
+      open: true,
+      type: "success",
+    });
+
+    handleClose();
   };
 
   return (
@@ -85,7 +126,12 @@ export const ListBankAccount: React.FC = () => {
                       >
                         <Edit />
                       </IconButton>
-                      <IconButton edge="end" aria-label="delete" color="error">
+                      <IconButton
+                        edge="end"
+                        aria-label="delete"
+                        color="error"
+                        onClick={() => handleClickOpen(bankAccount)}
+                      >
                         <Delete />
                       </IconButton>
                     </Box>
@@ -108,6 +154,40 @@ export const ListBankAccount: React.FC = () => {
           })}
         </List>
       </Box>
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">
+          {"Do you want delete this?"}
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            {account?.name} - R${account?.balance.toFixed(2)}
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button
+            size="small"
+            color="info"
+            variant="outlined"
+            onClick={handleClose}
+          >
+            Cancel
+          </Button>
+          <Button
+            size="small"
+            color="error"
+            variant="outlined"
+            onClick={handleDelete}
+            autoFocus
+          >
+            Delete
+          </Button>
+        </DialogActions>
+      </Dialog>
     </Paper>
   );
 };
