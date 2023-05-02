@@ -14,7 +14,8 @@ import moment from "moment";
 
 import React from "react";
 import { useRecoilState, useSetRecoilState } from "recoil";
-import { flowStates } from "../atom/atom";
+import { flowState, flowStates } from "../atom/atom";
+import { formatDate } from "@/presentation/components/format/date";
 
 export const Form: React.FC = () => {
   const getPaymentType = makeGetPaymentTypeFactory();
@@ -26,6 +27,7 @@ export const Form: React.FC = () => {
   const getFlow = makeGetFlowFactory();
 
   const [flows, setFlows] = useRecoilState(flowStates);
+  const [flow, setFlow] = useRecoilState(flowState);
 
   const setSnackbarState = useSetRecoilState(snackbarState);
 
@@ -54,6 +56,18 @@ export const Form: React.FC = () => {
   const [statusError, setStatusError] = React.useState<boolean>(false);
   const [id, setId] = React.useState<string>("");
   const [idError, setIdError] = React.useState<boolean>(false);
+
+  React.useEffect(() => {
+    console.log(flow.flowState);
+    setDescription(flow?.flowState?.description);
+    setPostingDate(formatDate(new Date(flow?.flowState?.postingDate)));
+    setExpirationDate(formatDate(new Date(flow?.flowState?.expirationDate)));
+    setValue(flow?.flowState?.value);
+    setPaymentTypeId(flow?.flowState?.paymentTypeId);
+    setFlowParameterId(flow?.flowState?.flowParameterId);
+    setStatus(flow?.flowState?.status);
+    setId(flow?.flowState?.id);
+  }, [flow]);
 
   React.useEffect(() => {
     getPaymentType.request().then((data) => {
@@ -194,9 +208,20 @@ export const Form: React.FC = () => {
     if (event.target.value) setPostingDateError(false);
     else setPostingDateError(true);
 
-    if (new Date(event.target.value) > new Date(expirationDate))
+    if (
+      new Date(event.target.value) > new Date(expirationDate) 
+    ) {
       setPostingDateError(true);
+      setExpirationDateError(true);
+    }else{
+      setPostingDateError(false);
+      setExpirationDateError(false);
+    }
   };
+
+
+
+
   const onHandlerExpirationDate = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
@@ -204,9 +229,19 @@ export const Form: React.FC = () => {
     if (event.target.value) setExpirationDateError(false);
     else setExpirationDateError(true);
 
-    if (new Date(event.target.value) < new Date(postingDate))
+    if (
+      new Date(event.target.value) < new Date(postingDate) 
+    ) {
+      setPostingDateError(true);
       setExpirationDateError(true);
+    }else{
+      setPostingDateError(false);
+      setExpirationDateError(false);
+    }
   };
+
+
+
   const onHandlerDescription = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {

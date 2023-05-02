@@ -16,38 +16,28 @@ import {
 } from "@mui/material";
 import React from "react";
 import { useRecoilState } from "recoil";
-import { flowStates } from "../atom/atom";
+import { flowState, flowStates } from "../atom/atom";
 import { Delete, Edit } from "@mui/icons-material";
 
-function createData(
-  name: string,
-  calories: number,
-  fat: number,
-  carbs: number,
-  protein: number
-) {
-  return { name, calories, fat, carbs, protein };
-}
-
-const rows = [
-  createData("Frozen yoghurt", 159, 6.0, 24, 4.0),
-  createData("Ice cream sandwich", 237, 9.0, 37, 4.3),
-  createData("Eclair", 262, 16.0, 24, 6.0),
-  createData("Cupcake", 305, 3.7, 67, 4.3),
-  createData("Gingerbread", 356, 16.0, 49, 3.9),
-];
 
 export const TableFlow: React.FC = () => {
   const theme = useTheme();
   const getFlow = makeGetFlowFactory();
 
   const [flows, setFlows] = useRecoilState(flowStates);
+  const [flow, setFlow] = useRecoilState(flowState);
+
+
+  const onHandlerUpdate = (flow: Flow) => {
+    setFlow({flowState: flow})
+  }
 
   React.useEffect(() => {
     getFlow.request().then((data) => {
       setFlows({ flowStates: data });
     });
   }, []);
+
 
   return (
     <Box p={2}>
@@ -120,6 +110,7 @@ export const TableFlow: React.FC = () => {
                       marginRight: 2,
                       color: theme.palette.text.secondary,
                     }}
+                    onClick={() => onHandlerUpdate(row)}
                   >
                     <Edit />
                   </IconButton>

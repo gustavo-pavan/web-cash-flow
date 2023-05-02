@@ -7,3 +7,10 @@ export const flowStates = atom({
       flowStates: null as Array<Flow>,
     },
   });
+
+  export const flowState = atom({
+    key: "flowState",
+    default: {
+      flowState: null as Flow,
+    },
+  });
