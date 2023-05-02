@@ -3,6 +3,7 @@ import { ThemeContext } from "../components/theme";
 import { AppBar } from "../components/app-bar";
 import { Drawer } from "../components/drawer";
 import { Main } from "../components/main";
+import { Snackbar } from "../components/snackbar";
 
 interface Props {
   children: React.ReactNode;
@@ -19,7 +20,10 @@ export const Container: React.FC<Props> = ({ children }) => {
     <ThemeContext>
       <AppBar handleDrawerOpen={handleDrawerOpen} open={open} />
       <Drawer open={open} />
-      <Main open={open}>{children}</Main>
+      <Main open={open}>
+        {children}
+        <Snackbar />
+      </Main>
     </ThemeContext>
   );
 };

@@ -129,12 +129,12 @@ export const Form: React.FC = () => {
 
   const onHandlerClean = () => {
     setDescription("");
-    setExpirationDate(null);
-    setPostingDate(null);
+    setExpirationDate("");
+    setPostingDate("");
     setPaymentTypeId("");
     setFlowParameterId("");
-    setValue(null);
-    setStatus(null);
+    setValue(0);
+    setStatus(0);
     setId("");
   };
 
@@ -179,7 +179,7 @@ export const Form: React.FC = () => {
     if (event.target.value) setPostingDateError(false);
     else setPostingDateError(true);
 
-    if (new Date(event.target.value) >= new Date(expirationDate))
+    if (new Date(event.target.value) > new Date(expirationDate))
       setPostingDateError(true);
   };
   const onHandlerExpirationDate = (
@@ -189,7 +189,7 @@ export const Form: React.FC = () => {
     if (event.target.value) setExpirationDateError(false);
     else setExpirationDateError(true);
 
-    if (new Date(event.target.value) <= new Date(postingDate))
+    if (new Date(event.target.value) < new Date(postingDate))
       setExpirationDateError(true);
   };
   const onHandlerDescription = (
