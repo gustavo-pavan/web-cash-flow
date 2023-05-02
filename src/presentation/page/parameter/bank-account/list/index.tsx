@@ -58,6 +58,7 @@ export const ListBankAccount: React.FC = () => {
   const handleDelete = () => {
     deleteBankAccount.request(account.id).then((data) => {
       if (data) {
+        setBankAccount({bankAccount: {balance: 0, description: "", name: "",id: ""}})
         getAllBankAccount.request().then((accounts) => {
           setBankAccounts({ bankAccounts: accounts });
         });

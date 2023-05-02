@@ -7,10 +7,7 @@ export const Header: React.FC = () => {
     <Paper
       sx={{
         height: 70,
-        background:
-          theme.palette.mode == "dark"
-            ? theme.palette.background.paper
-            : theme.palette.background.default,
+        background: theme.palette.background.default,
         padding: 2,
         paddingLeft: 4,
         borderRadius: 2,
