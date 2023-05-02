@@ -2,17 +2,26 @@ import { Flow, Status } from "@/domain/entity/flow";
 import { FlowParameter } from "@/domain/entity/flow-parameter";
 import { PaymentType } from "@/domain/entity/payment-type";
 import { makeGetFlowParameterFactory } from "@/main/factory/flow-parameter/get-flow-parameter.factory";
+import { makeCreateFlowFactory } from "@/main/factory/flow/create-flow.factory";
+import { makeUpdateFlowFactory } from "@/main/factory/flow/update-flow.factory";
 import { makeGetPaymentTypeFactory } from "@/main/factory/payment-type/get-payment-type.factory";
 import { Input } from "@/presentation/components/input";
+import { snackbarState } from "@/presentation/components/snackbar/atom";
 import { Add, CleaningServices } from "@mui/icons-material";
 import { Box, Button, Divider, Grid, MenuItem } from "@mui/material";
 import moment from "moment";
 
 import React from "react";
+import { useSetRecoilState } from "recoil";
 
 export const Form: React.FC = () => {
   const getPaymentType = makeGetPaymentTypeFactory();
   const getFlowParameter = makeGetFlowParameterFactory();
+
+  const createFlow = makeCreateFlowFactory();
+  const updateFlow = makeUpdateFlowFactory();
+
+  const setSnackbarState = useSetRecoilState(snackbarState);
 
   const [paymentTypes, setPaymentTypes] = React.useState<Array<PaymentType>>();
   const [flowParameters, setFlowParameters] =
@@ -78,9 +87,45 @@ export const Form: React.FC = () => {
 
   const hasError: boolean = validError();
 
-  const onHandlerCreate = (flow: Flow) => {};
+  const onHandlerCreate = (flow: Flow) => {
+    createFlow
+      .request(flow)
+      .then((data) => {
+        setSnackbarState({
+          message: "Create with success!",
+          open: true,
+          type: "success",
+        });
+        onHandlerClean();
+      })
+      .catch((error) => {
+        setSnackbarState({
+          message: "Unable to create, try again later",
+          open: true,
+          type: "error",
+        });
+      });
+  };
 
-  const onHandlerUpdate = (flow: Flow) => {};
+  const onHandlerUpdate = (flow: Flow) => {
+    updateFlow
+      .request(flow)
+      .then((data) => {
+        setSnackbarState({
+          message: "Create with success!",
+          open: true,
+          type: "success",
+        });
+        onHandlerClean()
+      })
+      .catch((error) => {
+        setSnackbarState({
+          message: "Unable to create, try again later",
+          open: true,
+          type: "error",
+        });
+      });
+  };
 
   const onHandlerClean = () => {
     setDescription("");
@@ -106,7 +151,7 @@ export const Form: React.FC = () => {
         id: id,
       };
 
-      if (id) onHandlerCreate(flow);
+      if (!id) onHandlerCreate(flow);
       else onHandlerUpdate(flow);
     }
   };
@@ -118,22 +163,24 @@ export const Form: React.FC = () => {
     if (event.target.value) setPaymentTypeIdError(false);
     else setPaymentTypeIdError(true);
   };
+
   const onHandlerFlowParameterId = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
-    setPaymentTypeId(event.target.value);
+    setFlowParameterId(event.target.value);
     if (event.target.value) setFlowParameterIdError(false);
-    else setPaymentTypeIdError(true);
+    else setFlowParameterIdError(true);
   };
+
   const onHandlerPostingDate = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
-      setPostingDate(event.target.value);
-      if (event.target.value) setPostingDateError(false);
-      else setPostingDateError(true);
-      
-      if(new Date(event.target.value) >= new Date(expirationDate))
-        setPostingDateError(true)
+    setPostingDate(event.target.value);
+    if (event.target.value) setPostingDateError(false);
+    else setPostingDateError(true);
+
+    if (new Date(event.target.value) >= new Date(expirationDate))
+      setPostingDateError(true);
   };
   const onHandlerExpirationDate = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -142,8 +189,8 @@ export const Form: React.FC = () => {
     if (event.target.value) setExpirationDateError(false);
     else setExpirationDateError(true);
 
-    if(new Date(event.target.value) <= new Date(postingDate))
-        setExpirationDateError(true)
+    if (new Date(event.target.value) <= new Date(postingDate))
+      setExpirationDateError(true);
   };
   const onHandlerDescription = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
