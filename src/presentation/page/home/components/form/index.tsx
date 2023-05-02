@@ -8,7 +8,7 @@ import { makeUpdateFlowFactory } from "@/main/factory/flow/update-flow.factory";
 import { makeGetPaymentTypeFactory } from "@/main/factory/payment-type/get-payment-type.factory";
 import { Input } from "@/presentation/components/input";
 import { snackbarState } from "@/presentation/components/snackbar/atom";
-import { Add, CleaningServices } from "@mui/icons-material";
+import { Add, CleaningServices, Edit } from "@mui/icons-material";
 import { Box, Button, Divider, Grid, MenuItem } from "@mui/material";
 import moment from "moment";
 
@@ -208,19 +208,14 @@ export const Form: React.FC = () => {
     if (event.target.value) setPostingDateError(false);
     else setPostingDateError(true);
 
-    if (
-      new Date(event.target.value) > new Date(expirationDate) 
-    ) {
+    if (new Date(event.target.value) > new Date(expirationDate)) {
       setPostingDateError(true);
       setExpirationDateError(true);
-    }else{
+    } else {
       setPostingDateError(false);
       setExpirationDateError(false);
     }
   };
-
-
-
 
   const onHandlerExpirationDate = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -229,18 +224,14 @@ export const Form: React.FC = () => {
     if (event.target.value) setExpirationDateError(false);
     else setExpirationDateError(true);
 
-    if (
-      new Date(event.target.value) < new Date(postingDate) 
-    ) {
+    if (new Date(event.target.value) < new Date(postingDate)) {
       setPostingDateError(true);
       setExpirationDateError(true);
-    }else{
+    } else {
       setPostingDateError(false);
       setExpirationDateError(false);
     }
   };
-
-
 
   const onHandlerDescription = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -411,12 +402,12 @@ export const Form: React.FC = () => {
           color="secondary"
           variant="outlined"
           onClick={onHandlerSubmit}
-          startIcon={<Add />}
+          startIcon={id ? <Edit /> : <Add />}
           sx={{
             margin: 2,
           }}
         >
-          Add Flow
+          {id ? "Edit Flow" : "Add Flow"}
         </Button>
       </Box>
     </React.Fragment>
