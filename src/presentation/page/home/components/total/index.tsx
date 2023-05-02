@@ -169,7 +169,7 @@ export const TableTotal: React.FC = () => {
                     color: alpha(theme.palette.success.main, 0.7),
                   }}
                 >
-                  ${state?.credit.toFixed(2)}
+                  +${state?.credit.toFixed(2)}
                 </Typography>
               </Box>
             </Box>
