@@ -3,15 +3,12 @@ import { makeCreateBankAccountFactory } from "@/main/factory/bank-account/create
 import { Input } from "@/presentation/components/input";
 import { snackbarState } from "@/presentation/components/snackbar/atom";
 import { CleaningServices, Add, Edit } from "@mui/icons-material";
-import {
-  Paper,
-  Grid,
-  useTheme,
-  Button,
-} from "@mui/material";
+import { Paper, Grid, useTheme, Button } from "@mui/material";
 import { alpha, Box } from "@mui/system";
 import React from "react";
-import { useSetRecoilState } from "recoil";
+import { useRecoilState, useSetRecoilState } from "recoil";
+import { bankAccountsStates } from "../../components/atom/atom";
+import { makeGetBankAccountFactory } from "@/main/factory/bank-account/get-bank-account.factory";
 
 export const Form: React.FC = () => {
   const setSnackbarState = useSetRecoilState(snackbarState);
@@ -31,6 +28,29 @@ export const Form: React.FC = () => {
 
   const validate = (): boolean => {
     return !name || !description || !balance;
+  };
+
+  const [bankAccountsState, setBankAccounts] =
+    useRecoilState(bankAccountsStates);
+
+  const getBankAccount = makeGetBankAccountFactory();
+
+  React.useEffect(() => {
+    getBankAccount
+      .request()
+      .then((data) => {
+        setBankAccounts({ bankAccounts: data });
+      })
+      .catch((x) => console.log(x));
+  }, []);
+
+  const refreshList = () => {
+    getBankAccount
+      .request()
+      .then((data) => {
+        setBankAccounts({ bankAccounts: data });
+      })
+      .catch((x) => console.log(x));
   };
 
   const fieldIsValid: boolean = validate();
@@ -62,7 +82,8 @@ export const Form: React.FC = () => {
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     setBalance(event.target.value);
-    if (event.target.value && parseFloat(event.target.value) <= 0) setBalanceError(true);
+    if (event.target.value && parseFloat(event.target.value) <= 0)
+      setBalanceError(true);
     else setBalanceError(false);
   };
 
@@ -77,6 +98,7 @@ export const Form: React.FC = () => {
             type: "success",
           });
 
+          refreshList();
           onHanlderClean();
         }
       })
@@ -99,7 +121,7 @@ export const Form: React.FC = () => {
             open: true,
             type: "success",
           });
-
+          refreshList();
           onHanlderClean();
         }
       })
