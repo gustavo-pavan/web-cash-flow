@@ -26,6 +26,7 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import { makeDeleteFlowFactory } from "@/main/factory/flow/delete-flow.factory";
 import { snackbarState } from "@/presentation/components/snackbar/atom";
+import { EFlowType } from "@/domain/entity/flow-parameter";
 
 export const TableFlow: React.FC = () => {
   const theme = useTheme();
@@ -74,7 +75,7 @@ export const TableFlow: React.FC = () => {
           },
         });
         getFlow.request().then((flows) => {
-          setFlows({ flowStates: flows});
+          setFlows({ flowStates: flows });
         });
       }
     });
@@ -103,8 +104,9 @@ export const TableFlow: React.FC = () => {
           <TableHead>
             <TableRow>
               <TableCell>Description</TableCell>
-              <TableCell>Flow</TableCell>
               <TableCell>Payment Type</TableCell>
+              <TableCell>Flow</TableCell>
+              <TableCell>Type</TableCell>
               <TableCell>Posting Date</TableCell>
               <TableCell>Expiration Date</TableCell>
               <TableCell>Status</TableCell>
@@ -125,6 +127,9 @@ export const TableFlow: React.FC = () => {
                   {row.flowParameterName}
                 </TableCell>
                 <TableCell>{row.paymentTypeName}</TableCell>
+                <TableCell component="th" scope="row">
+                  {EFlowType[row.flowType]}
+                </TableCell>
                 <TableCell>
                   {new Date(row.postingDate).toLocaleDateString()}
                 </TableCell>
@@ -204,7 +209,13 @@ export const TableFlow: React.FC = () => {
           >
             Cancel
           </Button>
-          <Button size="small" color="error" variant="outlined" autoFocus onClick={handleDelete}>
+          <Button
+            size="small"
+            color="error"
+            variant="outlined"
+            autoFocus
+            onClick={handleDelete}
+          >
             Delete
           </Button>
         </DialogActions>

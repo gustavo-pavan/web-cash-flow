@@ -1,4 +1,5 @@
 export type Flow = {
+    flowType?: number
     flowParameterName?: string
     paymentTypeName?: string
     paymentTypeId: string
