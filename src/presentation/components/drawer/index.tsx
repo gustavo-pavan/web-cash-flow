@@ -133,7 +133,7 @@ const menus = [
     ],
   },
   {
-    title: "Parameter",
+    title: "Parâmetros",
     links: [
       {
         path: "/parameters",
