@@ -129,7 +129,7 @@ export const TableFlow: React.FC = () => {
                 </TableCell>
                 <TableCell>{row.paymentTypeName}</TableCell>
                 <TableCell component="th" scope="row">
-                  {EFlowType[row.flowType]}
+                  {row.flowType === EFlowType.Credit ? "Crédito" : "Débito"}
                 </TableCell>
                 <TableCell>
                   {new Date(row.postingDate).toLocaleDateString()}
