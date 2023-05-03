@@ -18,10 +18,11 @@ import {
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import { Input } from "../../components/input";
-import { FileDownload, Add } from "@mui/icons-material";
 import { Form } from "./components/form";
 import { TableFlow } from "./components/table";
 import { TableTotal } from "./components/total";
+import { FileDownload } from "@mui/icons-material";
+import { formatDate } from "@/presentation/components/format/date";
 
 export const Home: React.FC = () => {
   const theme = useTheme();
@@ -48,10 +49,30 @@ export const Home: React.FC = () => {
           <Typography variant="h6" component="span">
             Cash Flow
           </Typography>
-
-          <Button variant="contained" size="small" startIcon={<FileDownload />}>
-            Export
-          </Button>
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+            }}
+          >
+            <Box mr={2}>
+              <Button
+                variant="contained"
+                size="small"
+                startIcon={<FileDownload />}
+              >
+                Export
+              </Button>
+            </Box>
+            |
+           <Box sx={{
+            display: "flex",
+            alignItems: "center"
+           }}>
+            <Typography ml={2}  mr={1} variant="body2" component="span">Filter</Typography>
+           <Input placeholder="Filer" id="filer" type="date" size="small" value={formatDate(new Date())} />
+           </Box>
+          </Box>
         </Box>
         <Divider />
 
@@ -59,11 +80,10 @@ export const Home: React.FC = () => {
 
         <Divider />
         <TableFlow />
-        
+
         <Divider />
 
-          <TableTotal />
-        
+        <TableTotal />
       </Paper>
     </Box>
   );
