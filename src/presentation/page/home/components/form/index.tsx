@@ -261,11 +261,11 @@ export const Form: React.FC = () => {
     <React.Fragment>
       <Box padding={2}>
         <Input
-          name="Description *"
-          placeholder="Description *"
+          name="Descrição *"
+          placeholder="Descrição *"
           id="description"
           error={descriptionError}
-          helperText="Description is required"
+          helperText="Descrição é obrigatório"
           onChange={onHandlerDescription}
           value={description}
         />
@@ -276,36 +276,36 @@ export const Form: React.FC = () => {
         <Grid container spacing={2}>
           <Grid item xs={4}>
             <Input
-              name="Posting date*"
-              placeholder="Posting date *"
+              name="Data de lançamento*"
+              placeholder="Data de lançamento *"
               id="postingdate"
               type="date"
               error={postingDateError}
-              helperText="Posting date is required or date is invalid"
+              helperText="Data de lançamento é obrigatório e não pode ser maior que expiração"
               onChange={onHandlerPostingDate}
               value={postingDate}
             />
           </Grid>
           <Grid item xs={4}>
             <Input
-              name="Expiration date*"
-              placeholder="Expiration date *"
+              name="Data de expiração *"
+              placeholder="Data de expiração *"
               id="expirationdate"
               type="date"
               error={expirationDateError}
-              helperText="Expiration is required or date is invalid"
+              helperText="Data de expiração é obrigatório e não pode ser maior que lançamento"
               onChange={onHandlerExpirationDate}
               value={expirationDate}
             />
           </Grid>
           <Grid item xs={4}>
             <Input
-              name="Value *"
-              placeholder="Value *"
+              name="Valor *"
+              placeholder="Valor *"
               id="value"
               type="text"
               error={valueError}
-              helperText="Value is required"
+              helperText="Valor é obrigatório"
               onChange={onHandlerValue}
               value={value}
               InputProps={{
@@ -319,12 +319,12 @@ export const Form: React.FC = () => {
           <Grid item xs={4}>
             <Input
               select
-              name="Payment type *"
+              name="Tipo pagamento *"
               id="name"
               type="text"
               label="Select"
               error={paymentTypeIdError}
-              helperText="Payment type is required"
+              helperText="Tipo pagamento é obrigatório"
               onChange={onHandlerPaymentTypeId}
               value={paymentTypeId}
             >
@@ -338,12 +338,12 @@ export const Form: React.FC = () => {
           <Grid item xs={4}>
             <Input
               select
-              name="Flow parameter *"
+              name="Fluxo *"
               id="name"
               type="text"
               label="Select"
               error={FlowParameterIdError}
-              helperText="Flow parameter is required"
+              helperText="Fluxo é obrigatório"
               onChange={onHandlerFlowParameterId}
               value={flowParameterId}
             >
@@ -362,7 +362,7 @@ export const Form: React.FC = () => {
               type="text"
               label="Select"
               error={statusError}
-              helperText="Status is required"
+              helperText="Status é obrigatório"
               onChange={onHandlerStatus}
               value={status}
             >
@@ -398,7 +398,7 @@ export const Form: React.FC = () => {
           }}
           onClick={onHandlerClean}
         >
-          Clean Data
+          Limpar dados
         </Button>
 
         <Button
@@ -412,7 +412,7 @@ export const Form: React.FC = () => {
             margin: 2,
           }}
         >
-          {id ? "Edit Flow" : "Add Flow"}
+          {id ? "Editar" : "Adicionar"}
         </Button>
       </Box>
     </React.Fragment>

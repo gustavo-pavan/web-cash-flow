@@ -83,7 +83,7 @@ export const ListFlowParameter: React.FC = () => {
       }
     });
     setSnackbarState({
-      message: "Deleted with success!",
+      message: "Deletado com sucesso!",
       open: true,
       type: "success",
     });
@@ -124,7 +124,7 @@ export const ListFlowParameter: React.FC = () => {
           }}
         >
           <Typography variant="caption" component="span">
-            Registers
+            Registros
           </Typography>
         </Paper>
         <List>
@@ -178,7 +178,7 @@ export const ListFlowParameter: React.FC = () => {
         aria-describedby="alert-dialog-description"
       >
         <DialogTitle id="alert-dialog-title">
-          {"Do you want delete this?"}
+          {"Você realmente deseja deletar esse fluxo?"}
         </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
@@ -192,7 +192,7 @@ export const ListFlowParameter: React.FC = () => {
             variant="outlined"
             onClick={handleClose}
           >
-            Cancel
+            Cancelar
           </Button>
           <Button
             size="small"
@@ -201,7 +201,7 @@ export const ListFlowParameter: React.FC = () => {
             onClick={handleDelete}
             autoFocus
           >
-            Delete
+            Deletar
           </Button>
         </DialogActions>
       </Dialog>

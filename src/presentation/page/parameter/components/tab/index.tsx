@@ -67,19 +67,19 @@ export const Tab: React.FC = () => {
                 aria-label="tab-parameter"
               >
                 <TabMui
-                  label="Bank Account"
+                  label="Conta bancária"
                   {...a11yProps(0)}
                   iconPosition="start"
                   icon={<AccountBalance />}
                 />
                 <TabMui
-                  label="Flow Parameter"
+                  label="Parâmetro Fluxo"
                   {...a11yProps(1)}
                   iconPosition="start"
                   icon={<Schema />}
                 />
                 <TabMui
-                  label="Payment Type"
+                  label="Tipo pagamento"
                   {...a11yProps(2)}
                   iconPosition="start"
                   icon={<Payments />}

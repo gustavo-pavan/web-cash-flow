@@ -104,14 +104,14 @@ export const TableFlow: React.FC = () => {
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
             <TableRow>
-              <TableCell>Description</TableCell>
-              <TableCell>Payment Type</TableCell>
-              <TableCell>Flow</TableCell>
-              <TableCell>Type</TableCell>
-              <TableCell>Posting Date</TableCell>
-              <TableCell>Expiration Date</TableCell>
+              <TableCell>Descrição</TableCell>
+              <TableCell>Tipo Pagamento</TableCell>
+              <TableCell>Fluxo</TableCell>
+              <TableCell>Tipo de Fluxo</TableCell>
+              <TableCell>Data lançamento</TableCell>
+              <TableCell>Data expiração</TableCell>
               <TableCell>Status</TableCell>
-              <TableCell align="right">Value</TableCell>
+              <TableCell align="right">Valor</TableCell>
               <TableCell></TableCell>
             </TableRow>
           </TableHead>
@@ -146,7 +146,7 @@ export const TableFlow: React.FC = () => {
                         color: alpha(theme.palette.error.main, 0.7),
                       }}
                     >
-                      Open
+                      Aberto
                     </Typography>
                   ) : (
                     <Typography
@@ -156,7 +156,7 @@ export const TableFlow: React.FC = () => {
                         color: alpha(theme.palette.success.main, 0.7),
                       }}
                     >
-                      Closed
+                      Fechado
                     </Typography>
                   )}
                 </TableCell>
@@ -194,7 +194,7 @@ export const TableFlow: React.FC = () => {
         aria-describedby="alert-dialog-description"
       >
         <DialogTitle id="alert-dialog-title">
-          {"Do you want delete this?"}
+          {"Você deseja deletar esse fluxo?"}
         </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
@@ -208,7 +208,7 @@ export const TableFlow: React.FC = () => {
             variant="outlined"
             onClick={handleClose}
           >
-            Cancel
+            Cancelar
           </Button>
           <Button
             size="small"
@@ -217,7 +217,7 @@ export const TableFlow: React.FC = () => {
             autoFocus
             onClick={handleDelete}
           >
-            Delete
+            Deletar
           </Button>
         </DialogActions>
       </Dialog>

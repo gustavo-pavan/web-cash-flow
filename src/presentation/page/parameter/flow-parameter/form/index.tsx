@@ -195,12 +195,12 @@ export const Form: React.FC = () => {
       }}
     >
       <Grid container spacing={2}>
-        <Grid item xs={12}>
+      <Grid item xs={12}>
           <Input
             error={nameError}
-            name="Name *"
-            placeholder="Name *"
-            helperText="Name is required"
+            name="Nome *"
+            placeholder="Nome *"
+            helperText="Nome é obrigatório"
             type="text"
             onChange={onHandlerName}
             value={name}
@@ -209,9 +209,9 @@ export const Form: React.FC = () => {
         <Grid item xs={12}>
           <Input
             error={descriptionError}
-            helperText="Description is required"
-            name="Description *"
-            placeholder="Description *"
+            helperText="Descrição é obrigatório"
+            name="Descrição *"
+            placeholder="Descrição *"
             type="text"
             onChange={onHandlerDescription}
             value={description}
@@ -221,20 +221,19 @@ export const Form: React.FC = () => {
         <Grid item xs={12}>
           <Input
             error={descriptionError}
-            helperText="Flow type is required"
-            name="Flow type *"
-            placeholder="Flow type *"
-            type="text"
+            helperText="Tipo do fluxo é obrigatório"
+            name="Tipo de fluxo *"
+            placeholder="Tipo de fluxo *"
             select
             onChange={onHandlerFlowType}
             value={flowType}
           >
             {(Object.keys(EFlowType) as Array<keyof typeof EFlowType>).map(
               (key) => {
-                if (!isNaN(Number(key)) && Number(key) != 0)
+                if (!isNaN(Number(key)) && Number(key) !== 0)
                   return (
                     <MenuItem key={key} value={key}>
-                      {EFlowType[key]}
+                      {Number(key) === EFlowType.Debit ? "Débito" : "Crédito"}
                     </MenuItem>
                   );
               }
@@ -262,7 +261,7 @@ export const Form: React.FC = () => {
           }}
           onClick={onHanlderClean}
         >
-          Clean Data
+          Limpar campos
         </Button>
 
         <Button
@@ -276,7 +275,7 @@ export const Form: React.FC = () => {
             margin: 2,
           }}
         >
-          {id ? "Update Flow" : "Add Flow"}
+          {id ? "Editar" : "Adicionar"}
         </Button>
       </Box>
     </Paper>

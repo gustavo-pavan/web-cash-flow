@@ -21,7 +21,7 @@ export const Header: React.FC = () => {
         component="span"
         sx={{ color: theme.palette.text.secondary }}
       >
-        Parameters
+        Parâmetros
       </Typography>
     </Paper>
   );

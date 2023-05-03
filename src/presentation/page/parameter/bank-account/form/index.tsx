@@ -112,7 +112,7 @@ export const Form: React.FC = () => {
       .then((data) => {
         if (data) {
           setSnackbarState({
-            message: "Create with success!",
+            message: "Criado com sucesso!",
             open: true,
             type: "success",
           });
@@ -123,7 +123,7 @@ export const Form: React.FC = () => {
       })
       .catch((error) => {
         setSnackbarState({
-          message: "Unable to create, try again later",
+          message: "Não foi possível criar, tente novamente",
           open: true,
           type: "error",
         });
@@ -136,7 +136,7 @@ export const Form: React.FC = () => {
       .then((data) => {
         if (data) {
           setSnackbarState({
-            message: "Update with success!",
+            message: "Editado com sucesso!",
             open: true,
             type: "success",
           });
@@ -146,7 +146,7 @@ export const Form: React.FC = () => {
       })
       .catch((error) => {
         setSnackbarState({
-          message: "Unable to update, try again later",
+          message: "Não foi possível fazer a edição, tente novamente",
           open: true,
           type: "error",
         });
@@ -166,7 +166,7 @@ export const Form: React.FC = () => {
       else onHandlerUpdate(bankAccount);
     } else {
       setSnackbarState({
-        message: "Fields is not valid",
+        message: "Campos não são válidos",
         open: true,
         type: "error",
       });
@@ -196,9 +196,9 @@ export const Form: React.FC = () => {
         <Grid item xs={12}>
           <Input
             error={nameError}
-            name="Name *"
-            placeholder="Name *"
-            helperText="Name is required"
+            name="Nome *"
+            placeholder="Nome *"
+            helperText="Nome é obrigatório"
             type="text"
             onChange={onHandlerName}
             value={name}
@@ -207,9 +207,9 @@ export const Form: React.FC = () => {
         <Grid item xs={12}>
           <Input
             error={descriptionError}
-            helperText="Description is required"
-            name="Description *"
-            placeholder="Description *"
+            helperText="Descrição é obrigatório"
+            name="Descrição *"
+            placeholder="Descrição *"
             type="text"
             onChange={onHandlerDescription}
             value={description}
@@ -218,9 +218,9 @@ export const Form: React.FC = () => {
         <Grid item xs={12}>
           <Input
             error={balanceError}
-            helperText="Balance is required"
-            name="Balance *"
-            placeholder="Balance *"
+            helperText="Valor é obrigarório"
+            name="Valor *"
+            placeholder="Valor *"
             type="text"
             onChange={onHandlerBalance}
             value={balance}
@@ -250,7 +250,7 @@ export const Form: React.FC = () => {
           }}
           onClick={onHanlderClean}
         >
-          Clean Data
+          Limpar campos
         </Button>
 
         <Button
@@ -264,7 +264,7 @@ export const Form: React.FC = () => {
             margin: 2,
           }}
         >
-          {id ? "Update Account" : "Add Account"}
+          {id ? "Editar" : "Adicionar"}
         </Button>
       </Box>
     </Paper>

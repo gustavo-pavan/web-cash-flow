@@ -138,7 +138,7 @@ const menus = [
       {
         path: "/parameter",
         icon: <Settings />,
-        label: "Paramater",
+        label: "Parâmetros",
       },
     ],
   },

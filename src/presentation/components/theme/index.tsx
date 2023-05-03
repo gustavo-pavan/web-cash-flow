@@ -76,7 +76,7 @@ export const ThemeContext: React.FC<Props> = ({ children }) => {
     },
   });
 
-  const [mode, setMode] = React.useState<PaletteMode>("dark");
+  const [mode, setMode] = React.useState<PaletteMode>("light");
 
   const colorMode = React.useMemo(
     () => ({

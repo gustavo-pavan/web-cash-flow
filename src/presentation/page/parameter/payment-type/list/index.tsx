@@ -65,7 +65,7 @@ export const ListPaymentType: React.FC = () => {
       }
     });
     setSnackbarState({
-      message: "Deleted with success!",
+      message: "Deletado com sucesso!",
       open: true,
       type: "success",
     });
@@ -106,7 +106,7 @@ export const ListPaymentType: React.FC = () => {
           }}
         >
           <Typography variant="caption" component="span">
-            Registers
+            Registros
           </Typography>
         </Paper>
         <List>
@@ -156,7 +156,7 @@ export const ListPaymentType: React.FC = () => {
         aria-describedby="alert-dialog-description"
       >
         <DialogTitle id="alert-dialog-title">
-          {"Do you want delete this?"}
+          {"Você realmente deseja deletar essa forma de pagamento?"}
         </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
@@ -170,7 +170,7 @@ export const ListPaymentType: React.FC = () => {
             variant="outlined"
             onClick={handleClose}
           >
-            Cancel
+            Cancelar
           </Button>
           <Button
             size="small"
@@ -179,7 +179,7 @@ export const ListPaymentType: React.FC = () => {
             onClick={handleDelete}
             autoFocus
           >
-            Delete
+            Deletar
           </Button>
         </DialogActions>
       </Dialog>

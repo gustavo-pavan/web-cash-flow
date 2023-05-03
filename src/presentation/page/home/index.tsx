@@ -82,7 +82,7 @@ export const Home: React.FC = () => {
           }}
         >
           <Typography variant="h6" component="span">
-            Cash Flow
+            Fluxo de caixa
           </Typography>
           <Box
             sx={{
@@ -96,8 +96,11 @@ export const Home: React.FC = () => {
                 size="small"
                 startIcon={<FileDownload />}
                 onClick={onHandlerExport}
+                sx={{
+                  color: "white"
+                }}
               >
-                Export
+                Exportar
               </Button>
             </Box>
             |
@@ -108,7 +111,7 @@ export const Home: React.FC = () => {
               }}
             >
               <Typography ml={2} mr={1} variant="body2" component="span">
-                Filter
+                Filtro
               </Typography>
               <Input
                 placeholder="Filer"

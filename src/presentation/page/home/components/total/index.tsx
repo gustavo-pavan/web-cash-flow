@@ -83,7 +83,7 @@ export const TableTotal: React.FC = () => {
       >
         <Box
           sx={{
-            width: "25%",
+            width: "45%",
           }}
         >
           <Box sx={{ width: "100%" }}>
@@ -98,7 +98,7 @@ export const TableTotal: React.FC = () => {
                 sx={{
                   display: "flex",
                   justifyContent: "space-between",
-                  width: "45%",
+                  width: "60%",
                 }}
               >
                 <Typography
@@ -108,7 +108,7 @@ export const TableTotal: React.FC = () => {
                     color: alpha(theme.palette.text.secondary, 0.7),
                   }}
                 >
-                  Balance Account
+                  Valor das contas bancárias
                 </Typography>
                 <Typography
                   variant="body2"
@@ -124,7 +124,7 @@ export const TableTotal: React.FC = () => {
                 sx={{
                   display: "flex",
                   justifyContent: "space-between",
-                  width: "45%",
+                  width: "60%",
                 }}
               >
                 <Typography
@@ -134,7 +134,7 @@ export const TableTotal: React.FC = () => {
                     color: alpha(theme.palette.text.secondary, 0.7),
                   }}
                 >
-                  Debit
+                  Débito
                 </Typography>
                 <Typography
                   variant="body2"
@@ -150,7 +150,7 @@ export const TableTotal: React.FC = () => {
                 sx={{
                   display: "flex",
                   justifyContent: "space-between",
-                  width: "45%",
+                  width: "60%",
                 }}
               >
                 <Typography
@@ -160,7 +160,7 @@ export const TableTotal: React.FC = () => {
                     color: alpha(theme.palette.text.secondary, 0.7),
                   }}
                 >
-                  Credit
+                  Crédito
                 </Typography>
                 <Typography
                   variant="body2"
@@ -187,7 +187,7 @@ export const TableTotal: React.FC = () => {
                 sx={{
                   display: "flex",
                   justifyContent: "space-between",
-                  width: "45%",
+                  width: "60%",
                 }}
               >
                 <Typography
