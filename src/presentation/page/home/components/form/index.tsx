@@ -120,7 +120,7 @@ export const Form: React.FC = () => {
       .request(flow)
       .then((data) => {
         setSnackbarState({
-          message: "Create with success!",
+          message: "Criado com sucesso!",
           open: true,
           type: "success",
         });
@@ -130,7 +130,7 @@ export const Form: React.FC = () => {
       })
       .catch((error) => {
         setSnackbarState({
-          message: "Unable to create, try again later",
+          message: "Não foi possível criar, tente novamente",
           open: true,
           type: "error",
         });
@@ -142,7 +142,7 @@ export const Form: React.FC = () => {
       .request(flow)
       .then((data) => {
         setSnackbarState({
-          message: "Create with success!",
+          message: "Editado com sucesso!",
           open: true,
           type: "success",
         });
@@ -151,7 +151,7 @@ export const Form: React.FC = () => {
       })
       .catch((error) => {
         setSnackbarState({
-          message: "Unable to create, try again later",
+          message: "Não foi possível editar, tente novamente",
           open: true,
           type: "error",
         });
@@ -322,7 +322,7 @@ export const Form: React.FC = () => {
               name="Tipo pagamento *"
               id="name"
               type="text"
-              label="Select"
+              label="Selecione"
               error={paymentTypeIdError}
               helperText="Tipo pagamento é obrigatório"
               onChange={onHandlerPaymentTypeId}
@@ -341,7 +341,7 @@ export const Form: React.FC = () => {
               name="Fluxo *"
               id="name"
               type="text"
-              label="Select"
+              label="Selecione"
               error={FlowParameterIdError}
               helperText="Fluxo é obrigatório"
               onChange={onHandlerFlowParameterId}
@@ -360,7 +360,7 @@ export const Form: React.FC = () => {
               name="Status *"
               id="name"
               type="text"
-              label="Select"
+              label="Selecione"
               error={statusError}
               helperText="Status é obrigatório"
               onChange={onHandlerStatus}
@@ -371,7 +371,7 @@ export const Form: React.FC = () => {
                   if (!isNaN(Number(key)))
                     return (
                       <MenuItem key={key} value={key}>
-                        {Status[key]}
+                        {Number(key) == Status.Closed ? "Fechado" : "Aberto"}
                       </MenuItem>
                     );
                 }

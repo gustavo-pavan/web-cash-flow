@@ -16,7 +16,7 @@ export default () => {
               <Home />
             </Container>
           </Route>
-          <Route exact path="/parameter">
+          <Route exact path="/parameters">
             <Container>
               <ParameterFactory />
             </Container>
