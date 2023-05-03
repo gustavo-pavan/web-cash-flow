@@ -161,7 +161,7 @@ export const ListFlowParameter: React.FC = () => {
                     secondary={
                       flowParameter.description +
                       " - " +
-                      flowParameter.flowType.name
+                      (flowParameter.flowType.name.toLowerCase() === "debit" ? "Débito" : "Crédito")
                     }
                   />
                 </ListItem>
