@@ -17,7 +17,7 @@ import {
 } from "@mui/material";
 import React from "react";
 import { useRecoilState, useSetRecoilState } from "recoil";
-import { flowState, flowStates } from "../atom/atom";
+import { dateFilterState, flowState, flowStates } from "../atom/atom";
 import { Delete, Edit } from "@mui/icons-material";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
@@ -33,6 +33,7 @@ export const TableFlow: React.FC = () => {
   const getFlow = makeGetFlowFactory();
   const deleteFlow = makeDeleteFlowFactory();
   const setSnackbarState = useSetRecoilState(snackbarState);
+  const [dateFilter, setDateFiler] = useRecoilState(dateFilterState);
 
   const [flows, setFlows] = useRecoilState(flowStates);
   const [flow, setFlow] = useRecoilState(flowState);
@@ -54,10 +55,10 @@ export const TableFlow: React.FC = () => {
   };
 
   React.useEffect(() => {
-    getFlow.request().then((data) => {
+    getFlow.request(dateFilter.dateFilterState).then((data) => {
       setFlows({ flowStates: data });
     });
-  }, []);
+  }, [dateFilter.dateFilterState]);
 
   const handleDelete = () => {
     deleteFlow.request(flowDelete.id).then((data) => {
@@ -74,7 +75,7 @@ export const TableFlow: React.FC = () => {
             value: 0,
           },
         });
-        getFlow.request().then((flows) => {
+        getFlow.request(dateFilter.dateFilterState).then((flows) => {
           setFlows({ flowStates: flows });
         });
       }

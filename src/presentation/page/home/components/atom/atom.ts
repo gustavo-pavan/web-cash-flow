@@ -14,3 +14,10 @@ export const flowStates = atom({
       flowState: null as Flow,
     },
   });
+
+  export const dateFilterState = atom({
+    key: "dateFilterState",
+    default:{
+      dateFilterState: null as string
+    }
+  })

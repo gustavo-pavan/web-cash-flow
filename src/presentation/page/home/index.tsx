@@ -23,8 +23,22 @@ import { TableFlow } from "./components/table";
 import { TableTotal } from "./components/total";
 import { FileDownload } from "@mui/icons-material";
 import { formatDate } from "@/presentation/components/format/date";
+import { useRecoilState } from "recoil";
+import { dateFilterState } from "./components/atom/atom";
 
 export const Home: React.FC = () => {
+  const [dateFilter, setDateFiler] = useRecoilState(dateFilterState);
+
+  React.useEffect(() => {
+    const format = formatDate(new Date())
+    setDateFiler({ dateFilterState: format});
+  }, []);
+
+  const onHandlerFilterDate = (
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    setDateFiler({ dateFilterState: event.target.value });
+  };
   const theme = useTheme();
 
   return (
@@ -65,13 +79,24 @@ export const Home: React.FC = () => {
               </Button>
             </Box>
             |
-           <Box sx={{
-            display: "flex",
-            alignItems: "center"
-           }}>
-            <Typography ml={2}  mr={1} variant="body2" component="span">Filter</Typography>
-           <Input placeholder="Filer" id="filer" type="date" size="small" value={formatDate(new Date())} />
-           </Box>
+            <Box
+              sx={{
+                display: "flex",
+                alignItems: "center",
+              }}
+            >
+              <Typography ml={2} mr={1} variant="body2" component="span">
+                Filter
+              </Typography>
+              <Input
+                placeholder="Filer"
+                id="filer"
+                type="date"
+                size="small"
+                value={dateFilter.dateFilterState}
+                onChange={onHandlerFilterDate}
+              />
+            </Box>
           </Box>
         </Box>
         <Divider />

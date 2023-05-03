@@ -14,12 +14,15 @@ import moment from "moment";
 
 import React from "react";
 import { useRecoilState, useSetRecoilState } from "recoil";
-import { flowState, flowStates } from "../atom/atom";
+import { dateFilterState, flowState, flowStates } from "../atom/atom";
 import { formatDate } from "@/presentation/components/format/date";
 
 export const Form: React.FC = () => {
   const getPaymentType = makeGetPaymentTypeFactory();
   const getFlowParameter = makeGetFlowParameterFactory();
+
+  const [dateFilter, setDateFiler] = useRecoilState(dateFilterState);
+
 
   const createFlow = makeCreateFlowFactory();
   const updateFlow = makeUpdateFlowFactory();
@@ -106,7 +109,7 @@ export const Form: React.FC = () => {
   };
 
   const onHandlerRefreshList = () => {
-    getFlow.request().then((data) => {
+    getFlow.request(dateFilter.dateFilterState).then((data) => {
       setFlows({ flowStates: data });
     });
   };
