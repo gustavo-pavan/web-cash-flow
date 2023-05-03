@@ -25,9 +25,12 @@ import { FileDownload } from "@mui/icons-material";
 import { formatDate } from "@/presentation/components/format/date";
 import { useRecoilState } from "recoil";
 import { dateFilterState } from "./components/atom/atom";
+import { makeFileFlowFactory } from "@/main/factory/flow/file-flow.factory";
 
 export const Home: React.FC = () => {
   const [dateFilter, setDateFiler] = useRecoilState(dateFilterState);
+  
+  const fileExport = makeFileFlowFactory();
 
   React.useEffect(() => {
     const format = formatDate(new Date())
@@ -40,6 +43,24 @@ export const Home: React.FC = () => {
     setDateFiler({ dateFilterState: event.target.value });
   };
   const theme = useTheme();
+
+  const onHandlerExport = () => {
+    fileExport.request(dateFilter.dateFilterState)
+      .then((data) => {
+        const outputFilename = `${Date.now()}.xls`;
+        var blob = new Blob([data], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.setAttribute('download', outputFilename);
+        document.body.appendChild(link);
+        link.click();
+
+        
+      })
+      .catch(error => console.log(error))
+  }
 
   return (
     <Box>
@@ -74,6 +95,7 @@ export const Home: React.FC = () => {
                 variant="contained"
                 size="small"
                 startIcon={<FileDownload />}
+                onClick={onHandlerExport}
               >
                 Export
               </Button>

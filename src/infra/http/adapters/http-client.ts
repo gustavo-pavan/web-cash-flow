@@ -7,6 +7,7 @@ export type HttpRequest = {
   method: HttpMethod;
   body?: any;
   headers?: any;
+  responseType?: any
 };
 
 export type HttpMethod = "post" | "get" | "put" | "delete";

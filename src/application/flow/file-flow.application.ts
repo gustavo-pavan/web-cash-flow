@@ -14,7 +14,8 @@ export class FileFlow implements IFileFlow{
             method: "post",
             body:{
                 dateTime: date
-            }
+            },
+            responseType: "blob"
         });
 
         return response.body;

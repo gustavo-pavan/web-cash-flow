@@ -10,6 +10,7 @@ export class AxiosHttpClient implements IHttpClient {
         method: data.method,
         data: data.body,
         headers: data.headers,
+        responseType: data.responseType
       });
     } catch (error) {
       response = error.response;
