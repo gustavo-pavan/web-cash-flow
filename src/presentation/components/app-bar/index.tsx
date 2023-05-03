@@ -2,35 +2,11 @@ import React, { useContext } from "react";
 
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
-import {
-  Brightness1Outlined,
-  Brightness1Rounded,
-  Logout,
-  NotificationsOutlined,
-  Search,
-  Settings,
-  SettingsOutlined,
-  Tune,
-} from "@mui/icons-material";
+import { Brightness5 } from "@mui/icons-material";
 import { styled } from "@mui/material/styles";
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
-import { useLocation } from "react-router-dom";
-import {
-  Avatar,
-  Box,
-  Button,
-  Chip,
-  Divider,
-  FormControl,
-  InputAdornment,
-  ListItemIcon,
-  Menu,
-  MenuItem,
-  TextField,
-  useTheme,
-} from "@mui/material";
-import { grey, yellow } from "@mui/material/colors";
+import { useTheme } from "@mui/material";
 import { ColorModeContext } from "../theme";
 
 interface AppBarProps extends MuiAppBarProps {
@@ -98,74 +74,77 @@ export const AppBar: React.FC<Props> = ({ handleDrawerOpen, open }) => {
         }}
       >
         <IconButton
-                data-testid="drawer-button-id"
-                color="inherit"
-                aria-label="drawer-button"
-                onClick={handleDrawerOpen}
-                edge="start"
-                sx={{
-                  mr: 3,
-                  ml: 2,
-                  background: open
-                    ? theme.palette.primary.main
-                    : theme.palette.primary.light,
-                  width: 29,
-                  height: 29,
-                  borderRadius: "8px",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  flexDirection: "row",
-                  ".MuiSvgIcon-root": {
-                    fontSize: 21,
-                    color: open
-                      ? theme.palette.background.paper
-                      : theme.palette.primary.main,
-                  },
-                  "&:hover": {
-                    background: theme.palette.primary.main,
-                    "& .MuiSvgIcon-root": {
-                      color: theme.palette.background.paper,
-                    },
-                  },
-                }}
-              >
-                <MenuIcon color="primary" />
-              </IconButton>
+          data-testid="drawer-button-id"
+          color="inherit"
+          aria-label="drawer-button"
+          onClick={handleDrawerOpen}
+          edge="start"
+          sx={{
+            mr: 3,
+            ml: 2,
+            background: open
+              ? theme.palette.primary.main
+              : theme.palette.primary.light,
+            width: 29,
+            height: 29,
+            borderRadius: "8px",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            flexDirection: "row",
+            ".MuiSvgIcon-root": {
+              fontSize: 21,
+              color: open
+                ? theme.palette.background.paper
+                : theme.palette.primary.main,
+            },
+            "&:hover": {
+              background: theme.palette.primary.main,
+              "& .MuiSvgIcon-root": {
+                color: theme.palette.background.paper,
+              },
+            },
+          }}
+        >
+          <MenuIcon color="primary" />
+        </IconButton>
 
-              <IconButton
-              data-testid="brightness-button-id"
-              color="inherit"
-              aria-label="brightness-button"
-              edge="start"
-              onClick={colorModeContext.toggleColorMode}
-              sx={{
-                mr: 3,
-                background: theme.palette.primary.light,
-                width: 29,
-                height: 29,
-                borderRadius: "8px",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                flexDirection: "row",
-                ".MuiSvgIcon-root": {
-                  fontSize: 21,
-                },
-                "&:hover": {
-                  background: theme.palette.primary.main,
-                  "& .MuiSvgIcon-root": {
-                    color: theme.palette.background.paper,
-                  },
-                },
-              }}
-            >
-              {theme.palette.mode === "dark" ? (
-                <Brightness1Outlined color="primary" />
-              ) : (
-                <Brightness1Rounded color="primary" />
-              )}
-            </IconButton>
+        <IconButton
+          data-testid="brightness-button-id"
+          color="inherit"
+          aria-label="brightness-button"
+          edge="start"
+          onClick={colorModeContext.toggleColorMode}
+          sx={{
+            mr: 3,
+            background: theme.palette.mode === "dark" ? theme.palette.primary.light : theme.palette.primary.main,
+            width: 29,
+            height: 29,
+            borderRadius: "8px",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            flexDirection: "row",
+            ".MuiSvgIcon-root": {
+              fontSize: 21,
+            },
+            "&:hover": {
+              background: theme.palette.mode === "dark" ? theme.palette.primary.main : theme.palette.background.paper,                
+            
+              "& .MuiSvgIcon-root": {
+                color: theme.palette.mode === "dark" ? theme.palette.background.paper : theme.palette.primary.main,                
+              },
+            },
+          }}
+        >
+          {theme.palette.mode === "dark" ? (
+            <Brightness5 color="primary" />
+          ) : (
+            <Brightness5 sx={{
+              color: theme.palette.background.default
+            }} />
+          )}
+        </IconButton>
       </Toolbar>
     </AppBarCustom>
   );
