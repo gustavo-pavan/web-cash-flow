@@ -13,6 +13,7 @@ import {
 } from "../../components/atom/atom";
 import { makeGetBankAccountFactory } from "@/main/factory/bank-account/get-bank-account.factory";
 import { makeUpdateBankAccountFactory } from "@/main/factory/bank-account/update-bank-account.factory";
+import { NumericFormatCustom } from "@/presentation/components/input/mask";
 
 export const Form: React.FC = () => {
   const resetAccountState = useResetRecoilState(bankAccountState);
@@ -220,9 +221,12 @@ export const Form: React.FC = () => {
             helperText="Balance is required"
             name="Balance *"
             placeholder="Balance *"
-            type="number"
+            type="text"
             onChange={onHandlerBalance}
             value={balance}
+            InputProps={{
+              inputComponent: NumericFormatCustom as any,
+            }}
           />
         </Grid>
       </Grid>

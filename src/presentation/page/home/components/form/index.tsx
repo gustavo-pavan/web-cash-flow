@@ -14,6 +14,7 @@ import React from "react";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import { dateFilterState, flowState, flowStates } from "../atom/atom";
 import { formatDate } from "@/presentation/components/format/date";
+import { NumericFormatCustom } from "@/presentation/components/input/mask";
 
 export const Form: React.FC = () => {
   const getPaymentType = makeGetPaymentTypeFactory();
@@ -302,11 +303,14 @@ export const Form: React.FC = () => {
               name="Value *"
               placeholder="Value *"
               id="value"
-              type="number"
+              type="text"
               error={valueError}
               helperText="Value is required"
               onChange={onHandlerValue}
               value={value}
+              InputProps={{
+                inputComponent: NumericFormatCustom as any,
+              }}
             />
           </Grid>
         </Grid>
